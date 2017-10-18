@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Appium Demo Suite" verbose="0" parallel="tests">
+<suite name="Appium Demo Suite" verbose="0" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="com.quantum.listerners.QuantumReportiumListener"/>
     </listeners>
@@ -9,7 +9,7 @@
     <!-- Set driver.name value to perfectoDriver       -->
     <parameter name="driver.name" value="perfectoRemoteDriver"/>
 
-    <test name="IOS Calc Test" enabled="true">
+    <test name="IOS Calc Test" enabled="false">
         <parameter name="driver.capabilities.model" value="iPhone.*"></parameter>
         <parameter name="env.resources" value="src/main/resources/ios"/>
 
@@ -22,12 +22,13 @@
             <class name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory"/>
         </classes>
     </test>
-    <test name="Android Calc Test" enabled="true">
-        <parameter name="driver.capabilities.model" value="Galaxy S.*"></parameter>
+    <test name="Android Contacts Test" enabled="true">
+        <parameter name="driver.capabilities.deviceName" value="03157DF3800C0537"></parameter>
+
         <parameter name="env.resources" value="src/main/resources/android"/>
         <groups>
             <run>
-                <include name="@appium"/>
+                <include name="@Contacts"/>
             </run>
         </groups>
         <classes>
