@@ -16,18 +16,49 @@ import static com.qmetry.qaf.automation.step.CommonStep.click;
 @QAFTestStepProvider
 public class ContactStepsDefs extends WebDriverTestBase  {
 
+    public String Platform = getDriver().getCapabilities().getCapability("os").toString();
+
     @When("I launch Contacts application")
     public void I_launch_contacts() throws Throwable {
-        DeviceUtils.closeApp("com.android.contacts","identifier");
-        DeviceUtils.startApp("com.android.contacts","identifier");
-        DeviceUtils.waitForPresentTextVisual("contacts groups more", 20);
+        System.out.println("platform" + Platform);
+        switch (Platform) {
+            case "Android":
+                try {DeviceUtils.closeApp("com.android.contacts", "identifier");}catch (Exception e){};
+                DeviceUtils.startApp("com.android.contacts", "identifier");
+                break;
+            case "iOS":
+                try{DeviceUtils.closeApp("Phone", "name");} catch (Exception e){};
+                DeviceUtils.startApp("Phone", "name");
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid Platform: " + Platform);
+        }
+         DeviceUtils.waitForPresentTextVisual("contacts", 20);
     }
 
     @When("I Add Contact with name \"([^\"]*)\" and number  \"([^\"]*)\"$")
     public void I_add_contact_with_name(String contactName, String phoneNumber) throws Throwable {
+        DeviceUtils.switchToContext("NATIVE");
+        if (!isAndroid()) {
+            System.out.println("this is an iOS");
+            click("contacts.page");
+          /*  click("add.contact.btn");
+            getDriver().findElement("add.name").sendKeys(contactName);
+            Thread.sleep(2000);
+            getDriver().findElement("phone.field").click();
+            Thread.sleep(2000);
+            getDriver().findElement("add.phone").sendKeys(phoneNumber);
+*/
+
+          //  return;
+        }
+
+
+
         //Add contact
         click("add.contact.btn");
-        DeviceUtils.waitForPresentTextVisual("Phone Number", 20);
+       // DeviceUtils.waitForPresentTextVisual("Phone Number", 20);
         //Insert name and number
         getDriver().findElement("add.name").sendKeys(contactName);
         Thread.sleep(2000);
@@ -37,10 +68,11 @@ public class ContactStepsDefs extends WebDriverTestBase  {
         DeviceUtils.waitForPresentTextVisual(phoneNumber, 20);
         //Save contact
         click("save.contact");
-        DeviceUtils.waitForPresentTextVisual("to view recent events", 20);
+        return;
+       // DeviceUtils.waitForPresentTextVisual("to view recent events", 20);
         //return to main screen
-        click("back");
-        DeviceUtils.waitForPresentTextVisual("contacts groups more", 20);
+      //  click("back");
+       // DeviceUtils.waitForPresentTextVisual("contacts groups more", 20);
     }
 
     @When("I Delete Contact \"([^\"]*)\"$")
@@ -54,11 +86,6 @@ public class ContactStepsDefs extends WebDriverTestBase  {
         click("delete");
         Thread.sleep(2000);
         click("delete.confirm");
-
-
-
-
-
     }
 
     private boolean isAndroid () {
