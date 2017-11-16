@@ -42,23 +42,13 @@ public class ContactStepsDefs extends WebDriverTestBase  {
         DeviceUtils.switchToContext("NATIVE");
         if (!isAndroid()) {
             System.out.println("this is an iOS");
-            click("contacts.page");
-          /*  click("add.contact.btn");
-            getDriver().findElement("add.name").sendKeys(contactName);
-            Thread.sleep(2000);
-            getDriver().findElement("phone.field").click();
-            Thread.sleep(2000);
-            getDriver().findElement("add.phone").sendKeys(phoneNumber);
-*/
+            getDriver().findElement("contacts.page").click();
 
-          //  return;
         }
-
-
 
         //Add contact
         click("add.contact.btn");
-       // DeviceUtils.waitForPresentTextVisual("Phone Number", 20);
+       DeviceUtils.waitForPresentTextVisual("Phone", 20);
         //Insert name and number
         getDriver().findElement("add.name").sendKeys(contactName);
         Thread.sleep(2000);
@@ -67,25 +57,21 @@ public class ContactStepsDefs extends WebDriverTestBase  {
         getDriver().findElement("add.phone").sendKeys(phoneNumber);
         DeviceUtils.waitForPresentTextVisual(phoneNumber, 20);
         //Save contact
-        click("save.contact");
-        return;
-       // DeviceUtils.waitForPresentTextVisual("to view recent events", 20);
-        //return to main screen
-      //  click("back");
-       // DeviceUtils.waitForPresentTextVisual("contacts groups more", 20);
+
+        getDriver().findElement("save.contact").click();
+        if (isAndroid()) {
+            DeviceUtils.waitForPresentTextVisual("to view recent events", 20);
+            //return to main screen
+            getDriver().findElement("back").click();
+            DeviceUtils.waitForPresentTextVisual("contacts groups more", 20);
+        }
+
+
     }
 
     @When("I Delete Contact \"([^\"]*)\"$")
     public void I_delete_contact(String searchKey) throws Throwable {
-        //go to contact
-        Map<String, Object> params = new HashMap<>();
-        params.put("label", searchKey);
-        getDriver().executeScript("mobile:button-text:click", params);
-        click("more");
-        Thread.sleep(2000);
-        click("delete");
-        Thread.sleep(2000);
-        click("delete.confirm");
+
     }
 
     private boolean isAndroid () {
