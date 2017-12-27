@@ -18,7 +18,6 @@ import static com.qmetry.qaf.automation.step.CommonStep.click;
 @QAFTestStepProvider
 public class ContactStepsDefs extends QuantumCourseUtils  {
 
-    public String platform = getDriver().getCapabilities().getCapability("os").toString();
 
     @When("I launch Contacts application")
     public void I_launch_contacts() throws Throwable {

@@ -12,6 +12,7 @@ import com.qmetry.qaf.automation.ui.webdriver.QAFExtendedWebDriver;
 import com.quantum.utils.DeviceUtils;
 public class QuantumCourseUtils extends WebDriverTestBase {
 
+    public String platform = getDriver().getCapabilities().getCapability("os").toString();
 
 
     public boolean isAndroid () {
