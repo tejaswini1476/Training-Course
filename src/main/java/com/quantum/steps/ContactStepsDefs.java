@@ -1,10 +1,12 @@
 package com.quantum.steps;
 
+import com.qmetry.qaf.automation.step.CommonStep;
 import com.qmetry.qaf.automation.step.QAFTestStepProvider;
 import com.qmetry.qaf.automation.ui.WebDriverTestBase;
 import com.quantum.utils.DeviceUtils;
 import cucumber.api.java.en.*;
 
+import com.quantum.utils.QuantumCourseUtils;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,14 +16,14 @@ import static com.qmetry.qaf.automation.step.CommonStep.click;
  * Created by yaronw on 08/10/2017.
  */
 @QAFTestStepProvider
-public class ContactStepsDefs extends WebDriverTestBase  {
+public class ContactStepsDefs extends QuantumCourseUtils  {
 
-    public String Platform = getDriver().getCapabilities().getCapability("os").toString();
+    public String platform = getDriver().getCapabilities().getCapability("os").toString();
 
     @When("I launch Contacts application")
     public void I_launch_contacts() throws Throwable {
-        System.out.println("platform" + Platform);
-        switch (Platform) {
+        System.out.println("platform" + platform);
+        switch (platform) {
             case "Android":
                 try {DeviceUtils.closeApp("com.android.contacts", "identifier");}catch (Exception e){};
                 DeviceUtils.startApp("com.android.contacts", "identifier");
@@ -32,7 +34,7 @@ public class ContactStepsDefs extends WebDriverTestBase  {
                 break;
 
             default:
-                throw new IllegalArgumentException("Invalid Platform: " + Platform);
+                throw new IllegalArgumentException("Invalid Platform: " + platform);
         }
          DeviceUtils.waitForPresentTextVisual("contacts", 20);
     }
@@ -40,10 +42,10 @@ public class ContactStepsDefs extends WebDriverTestBase  {
     @When("I Add Contact with name \"([^\"]*)\" and number  \"([^\"]*)\"$")
     public void I_add_contact_with_name(String contactName, String phoneNumber) throws Throwable {
         DeviceUtils.switchToContext("NATIVE");
+
         if (!isAndroid()) {
             System.out.println("this is an iOS");
             getDriver().findElement("contacts.page").click();
-
         }
 
         //Add contact
@@ -59,6 +61,7 @@ public class ContactStepsDefs extends WebDriverTestBase  {
         //Save contact
 
         getDriver().findElement("save.contact").click();
+
         if (isAndroid()) {
             DeviceUtils.waitForPresentTextVisual("to view recent events", 20);
             //return to main screen
@@ -73,13 +76,13 @@ public class ContactStepsDefs extends WebDriverTestBase  {
     public void I_delete_contact(String searchKey) throws Throwable {
 
     }
-
+/*
     private boolean isAndroid () {
 
-        return getDriver().getCapabilities().getCapability("platform").toString().equalsIgnoreCase("Android");
+        return getDriver().getCapabilities().getCapability("os").toString().equalsIgnoreCase("Android");
 
     }
-
+*/
 
 
 
