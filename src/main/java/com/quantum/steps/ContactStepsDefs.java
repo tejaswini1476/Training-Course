@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.qmetry.qaf.automation.step.CommonStep.click;
+import static com.qmetry.qaf.automation.step.CommonStep.get;
 
 /**
  * Created by yaronw on 08/10/2017.
@@ -73,6 +74,22 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
 
     @When("I Delete Contact \"([^\"]*)\"$")
     public void I_delete_contact(String searchKey) throws Throwable {
+
+
+
+    }
+
+    @When("I Check if Contact \"([^\"]*)\" and delete$")
+    public void check_contact_exist_delete(String searchKey) throws Throwable {
+
+        getDriver().findElement("search.contact").sendKeys(searchKey);
+        //trying to look for the no contacts found object. if it is NOT found when we will assume the contact exists and delete
+        try {
+             getDriver().findElement("no.contacts").getText();
+        }catch(Exception e) {
+            //The  catch is executed when the "no contacs found is not present, so we assume the contact exists.
+        }
+
 
     }
 /*

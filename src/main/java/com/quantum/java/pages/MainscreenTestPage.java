@@ -55,4 +55,6 @@ public class MainscreenTestPage extends WebDriverBaseTestPage<WebDriverTestPage>
 		return btnMultiplication;
 	}
 
+	public static String Deepika() {return "hi";}
+
 }
