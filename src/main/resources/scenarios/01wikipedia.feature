@@ -7,7 +7,10 @@ Feature: First Test - Wikipedia
     Then I enter "Apple" to "//*[@id='searchInput']"
     Then I wait for "3" seconds
     Then I click on "//*[@class="pure-button pure-button-primary-progressive"]"
-    Then I wait "30" seconds to see the text "deciduous tree"
+    Then I wait "30" seconds to see the text "fruit"
+
+
+
 
 
 
