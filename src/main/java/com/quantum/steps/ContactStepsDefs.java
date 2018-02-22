@@ -37,6 +37,7 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
                 throw new IllegalArgumentException("Invalid Platform: " + platform);
         }
          DeviceUtils.waitForPresentTextVisual("contacts", 20);
+
     }
 
     @When("I Add Contact with name \"([^\"]*)\" and number  \"([^\"]*)\"$")

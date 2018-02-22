@@ -8,7 +8,7 @@
 		<parameter name="driver.capabilities.model" value="Galaxy.*"></parameter>
 		<groups>
 			<run>
-				<include name="@WikipediaLocators" />
+				<include name="@returnValue" />
 			</run>
 		</groups>
 		<classes>
@@ -16,11 +16,11 @@
 				name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory" />
 		</classes>
 	</test>
-	<test name="iOS Test" enabled="true">
+	<test name="iOS Test" enabled="false">
 		<parameter name="driver.capabilities.model" value="iPhone.*"></parameter>
 		<groups>
 			<run>
-				<include name="@WikipediaLocators" />
+				<include name="@Wikipedia" />
 			</run>
 		</groups>
 		<classes>
