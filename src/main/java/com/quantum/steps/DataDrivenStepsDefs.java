@@ -17,5 +17,9 @@ public class DataDrivenStepsDefs extends WebDriverTestBase {
         String data = ConfigurationUtils.getBaseBundle().getPropertyValue("myWebsite");
         System.out.println("Data from Properties: " + data);
 
+
+
+
+
     }
 }

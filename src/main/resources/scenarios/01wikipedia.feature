@@ -1,6 +1,6 @@
 @Wikipedia
-Feature: First Test - Wikipedia 
-  
+Feature: First Test - Wikipedia
+  @WikipediaApple
   Scenario: apple page on Wikipedia
     Given I open browser to webpage "wikipedia.org"
     Then I wait "30" seconds to see the text "The Free Encyclopedia"
