@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Web Demo Suite" verbose="0" parallel="tests" thread-count="2">
+<suite name="Web Demo Suite" verbose="0" parallel="tests">
 	<listeners>
 		<listener class-name="com.quantum.listerners.QuantumReportiumListener"/>
 	</listeners>
@@ -8,7 +8,7 @@
 		<parameter name="driver.capabilities.model" value="Galaxy.*"></parameter>
 		<groups>
 			<run>
-				<include name="@returnValue" />
+				<include name="@WikipediaLocators" />
 			</run>
 		</groups>
 		<classes>
@@ -16,11 +16,11 @@
 				name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory" />
 		</classes>
 	</test>
-	<test name="iOS Test" enabled="false">
+	<test name="iOS Test" enabled="true">
 		<parameter name="driver.capabilities.model" value="iPhone.*"></parameter>
 		<groups>
 			<run>
-				<include name="@Wikipedia" />
+				<include name="@WikipediaLocators" />
 			</run>
 		</groups>
 		<classes>

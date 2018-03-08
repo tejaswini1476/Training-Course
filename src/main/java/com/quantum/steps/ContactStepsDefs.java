@@ -22,11 +22,13 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
 
     @When("I launch Contacts application")
     public void I_launch_contacts() throws Throwable {
-        System.out.println("platform" + platform);
+
+        System.out.println("platform:" + platform);
+
         switch (platform) {
             case "Android":
-                try {DeviceUtils.closeApp("com.android.contacts", "identifier");}catch (Exception e){};
-                DeviceUtils.startApp("com.android.contacts", "identifier");
+                try {DeviceUtils.closeApp("Contacts", "name");}catch (Exception e){};
+                DeviceUtils.startApp("Contacts", "name");
                 break;
             case "iOS":
                 try{DeviceUtils.closeApp("Phone", "name");} catch (Exception e){};
@@ -37,6 +39,8 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
                 throw new IllegalArgumentException("Invalid Platform: " + platform);
         }
          DeviceUtils.waitForPresentTextVisual("contacts", 20);
+
+
 
     }
 
@@ -51,7 +55,18 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
 
         //Add contact
         click("add.contact.btn");
-       DeviceUtils.waitForPresentTextVisual("Phone", 20);
+        // in some Android devices, after clicking on add contact, a popup appears asking which account to save the contact under
+        //we will look for this and if it appears select the device option
+        if (isAndroid()) {
+
+            if(isText("Save contacts to",20)) {
+                getDriver().findElement("save.phone").click();
+            }
+
+            //Insert name and number
+
+        }
+        DeviceUtils.waitForPresentTextVisual("Phone", 20);
         //Insert name and number
         getDriver().findElement("add.name").sendKeys(contactName);
         Thread.sleep(2000);
@@ -64,7 +79,7 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
         getDriver().findElement("save.contact").click();
 
         if (isAndroid()) {
-            DeviceUtils.waitForPresentTextVisual("to view recent events", 20);
+            DeviceUtils.waitForPresentTextVisual("connected via", 20);
             //return to main screen
             getDriver().findElement("back").click();
             DeviceUtils.waitForPresentTextVisual("contacts groups more", 20);
@@ -75,8 +90,6 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
 
     @When("I Delete Contact \"([^\"]*)\"$")
     public void I_delete_contact(String searchKey) throws Throwable {
-
-
 
     }
 
@@ -93,23 +106,6 @@ public class ContactStepsDefs extends QuantumCourseUtils  {
 
 
     }
-/*
-    private boolean isAndroid () {
-
-        return getDriver().getCapabilities().getCapability("os").toString().equalsIgnoreCase("Android");
-
-    }
-*/
-
-
-
-
-
-
-
-
-
-
 }
 
 
