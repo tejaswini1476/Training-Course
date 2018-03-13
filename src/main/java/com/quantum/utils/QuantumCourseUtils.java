@@ -36,6 +36,14 @@ public class QuantumCourseUtils extends WebDriverTestBase {
             return false;
         }
     }
+    public boolean isMobile() {
+     String type =  ConfigurationUtils.getBaseBundle().getProperty("perfecto.capabilities.deviceType").toString();
+      // String type = getDriver().getCapabilities().getCapability("deviceType").toString();
+
+        if(type.equalsIgnoreCase("Mobile")) {return true;}
+       return  false;
+
+    }
 
 
 }

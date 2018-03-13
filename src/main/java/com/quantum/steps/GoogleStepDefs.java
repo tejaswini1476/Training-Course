@@ -3,26 +3,38 @@ package com.quantum.steps;
 import com.qmetry.qaf.automation.step.QAFTestStepProvider;
 import com.qmetry.qaf.automation.ui.WebDriverTestBase;
 import com.qmetry.qaf.automation.ui.webdriver.QAFExtendedWebElement;
+import com.quantum.utils.ConfigurationUtils;
+import com.quantum.utils.DeviceUtils;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.Keys;
+import com.quantum.utils.QuantumCourseUtils;
 
 import java.util.List;
 
 @QAFTestStepProvider
-public class GoogleStepDefs {
+public class GoogleStepDefs extends QuantumCourseUtils {
 	@Given("^I am on Google Search Page$")
 	public void I_am_on_Google_Search_Page() throws Throwable {
 		new WebDriverTestBase().getDriver().get("http://www.google.com/");
 	}
 	@When("^I search for \"([^\"]*)\"$")
 	public void I_search_for(String searchKey) throws Throwable {
-		QAFExtendedWebElement searchBoxElement = new QAFExtendedWebElement("name=q");
-		QAFExtendedWebElement searchBtnElement = new QAFExtendedWebElement("name=btnG");
+		QAFExtendedWebElement searchBoxElement = new QAFExtendedWebElement("search.text.box");
+		QAFExtendedWebElement searchBtnElement = new QAFExtendedWebElement("search.button");
 
 		searchBoxElement.clear();
 		searchBoxElement.sendKeys(searchKey);
-		searchBtnElement.click();
+        //Yaron comment
+        if(isMobile()){
+            searchBtnElement.click();
+
+        }else {
+            searchBoxElement.sendKeys(Keys.ENTER);
+        }
+
+
 
 	}
 	@Then("^it should have \"([^\"]*)\" in search results$")
