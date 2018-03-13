@@ -41,8 +41,8 @@ public class moreActions {
     public static void switchToDriver(String driverName) {
 
         TestBaseProvider.instance().get().setDriver(driverName + "RemoteDriver");
-        String envResources = ConfigurationManager.getBundle().getString(driverName + ".env.resources");
-        ConfigurationManager.getBundle().setProperty("env.resources",envResources);
+        //String envResources = ConfigurationManager.getBundle().getString(driverName + ".env.resources");
+        //ConfigurationManager.getBundle().setProperty("env.resources",envResources);
 
 
     }

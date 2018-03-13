@@ -35,10 +35,10 @@ public class twoDevicesStepsDefs extends WebDriverTestCase {
         final String msg = "Test Message";
 
         moreActions.switchToDriver(firstDevice);
-        openApp();
+        //openApp();
 
         moreActions.switchToDriver(secondDevice);
-        openApp();
+        //openApp();
         String PhoneBNum = moreActions.getDevicePhoneNumber();
 
         //device A (send SMS)
@@ -61,15 +61,15 @@ public class twoDevicesStepsDefs extends WebDriverTestCase {
     private void openApp()
     {
 
-        String appPackage = (String)getDriver().getCapabilities().getCapability("appPackage");
+      //  String appPackage = (String)getDriver().getCapabilities().getCapability("appPackage");
         try {
-            DeviceUtils.closeApp(appPackage, "identifier");
+            DeviceUtils.closeApp("Messages", "name");
 
         }catch (Exception e)
         {
             //nothing
         }
-        DeviceUtils.startApp(appPackage, "identifier");
+        DeviceUtils.startApp("Messages", "name");
     }
 
 
