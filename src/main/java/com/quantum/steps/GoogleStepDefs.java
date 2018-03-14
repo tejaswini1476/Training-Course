@@ -26,7 +26,8 @@ public class GoogleStepDefs extends QuantumCourseUtils {
 
 		searchBoxElement.clear();
 		searchBoxElement.sendKeys(searchKey);
-        //Yaron comment
+        //Web & mobile are sometimes slightly different. In this case, in mobile we need to click the go button and in Desktop there is no button snd we
+        // need to press the Enter key. To implement this, we created an isMobile method which uses the deviceType capability and with it we can branch our code
         if(isMobile()){
             searchBtnElement.click();
 
