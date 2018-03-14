@@ -6,6 +6,8 @@ import com.quantum.utils.DeviceUtils;
 import cucumber.api.java.en.When;
 import org.testng.annotations.Test;
 import com.quantum.utils.moreActions;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by uzie on 1/23/17.
@@ -55,6 +57,11 @@ public class twoDevicesStepsDefs extends WebDriverTestCase {
         moreActions.switchToDriver(secondDevice);
         DeviceUtils.assertVisualText(msg);
 
+        Map<String, Object> params2 = new HashMap<>();
+        params2.put("context", "all");
+        String result2 = getDriver().executeScript("mobile:screen:text", params2).toString();
+
+
     }
 
 
@@ -69,6 +76,10 @@ public class twoDevicesStepsDefs extends WebDriverTestCase {
         {
             //nothing
         }
+
+
+
+
         DeviceUtils.startApp("Messages", "name");
     }
 
