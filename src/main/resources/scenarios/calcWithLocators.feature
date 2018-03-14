@@ -1,7 +1,7 @@
 @calculator
 Feature: Quantum Training
 
-  @acalculator
+  @calculator
   Scenario: Using Locators
     Given I start application by name "Calculator"
     And I am using an AppiumDriver
@@ -9,3 +9,6 @@ Feature: Quantum Training
     Then I click on "btn.add"
     Then I click on "btn.09"
     Then I click on "btn.equal"
+
+    @somethingElse
+  Scenario: whatever
