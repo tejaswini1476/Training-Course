@@ -1,9 +1,12 @@
 package com.quantum.pages;
 
 import com.qmetry.qaf.automation.ui.WebDriverBaseTestPage;
+import com.qmetry.qaf.automation.ui.WebDriverTestBase;
 import com.qmetry.qaf.automation.ui.annotations.FindBy;
 import com.qmetry.qaf.automation.ui.api.WebDriverTestPage;
+import com.qmetry.qaf.automation.ui.webdriver.QAFExtendedWebDriver;
 import com.qmetry.qaf.automation.ui.webdriver.QAFWebElement;
+import com.quantum.utils.DeviceUtils;
 import com.quantum.utils.QuantumCourseUtils;
 import org.testng.Assert;
 
@@ -56,7 +59,7 @@ public abstract class AbstractBasePage extends WebDriverBaseTestPage<WebDriverTe
     public void validateUserLoggedIn(String username){
 
         menuBtn.click();
-        Assert.assertEquals(username, signedInUser.getText());
+        DeviceUtils.waitForPresentTextVisual(username,20);
     }
     public boolean isLoggedIn(){
         return signInText.isPresent();
