@@ -44,6 +44,12 @@ public class QuantumCourseUtils extends WebDriverTestBase {
        return  false;
 
     }
+    public void clickVisualText(String text, int timeout) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("label", text);
+        params.put("timeout", timeout);
+        getDriver().executeScript("mobile:button-text:click", params);
+    }
 
 
 }
