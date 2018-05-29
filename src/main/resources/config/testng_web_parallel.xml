@@ -16,6 +16,18 @@
 				name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory" />
 		</classes>
 	</test>
+    <test name="LG Test" enabled="true">
+        <parameter name="driver.capabilities.model" value="Galaxy.*"></parameter>
+        <groups>
+            <run>
+                <include name="@WikipediaLocators" />
+            </run>
+        </groups>
+        <classes>
+            <class
+                    name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory" />
+        </classes>
+    </test>
 	<test name="iOS Test" enabled="true">
 		<parameter name="driver.capabilities.model" value="iPhone.*"></parameter>
 		<groups>
