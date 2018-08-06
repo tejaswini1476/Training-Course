@@ -16,7 +16,7 @@
 
     <groups>
         <run>
-            <include name="@addContactSimple"/>
+            <include name="@appium"/>
         </run>
     </groups>
     <classes>
@@ -32,7 +32,7 @@
         <parameter name="env.resources" value="src/main/resources/android"/>
         <groups>
             <run>
-                <include name="@addContactSimple"/>
+                 <include name="@appium"/>
             </run>
         </groups>
         <classes>
