@@ -4,7 +4,7 @@ import com.qmetry.qaf.automation.ui.annotations.FindBy;
 import com.qmetry.qaf.automation.ui.api.PageLocator;
 import com.qmetry.qaf.automation.ui.webdriver.QAFWebElement;
 
-import static com.quantum.listerners.QuantumReportiumListener.logStepStart;
+import static com.quantum.listeners.QuantumReportiumListener.logStepStart;
 
 public class LoginPage extends AbstractBasePage{
 

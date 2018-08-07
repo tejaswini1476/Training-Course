@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static com.qmetry.qaf.automation.core.ConfigurationManager.getBundle;
-import static com.quantum.listerners.QuantumReportiumListener.logStepStart;
+import static com.quantum.listeners.QuantumReportiumListener.logStepStart;
 @QAFTestStepProvider
 public class POMStepDefs extends WebDriverTestCase {
     private final String USERNAME = getBundle().getPropertyValue("username");

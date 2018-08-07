@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.qmetry</groupId>
     <artifactId>quantum-course</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
 
     <properties>
         <testngXmlDir>src/main/resources/config</testngXmlDir>
         <testngXmlFile>testng_web.xml</testngXmlFile>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <reportium-sdk.version>1.1.15</reportium-sdk.version>
-        <selenium.version>2.53.1</selenium.version>
+        <reportium-sdk.version>1.2.0</reportium-sdk.version>
         <testng.version>6.9.10</testng.version>
         <cukes.version>1.2.5</cukes.version>
-        <qaf.version>2.1.11</qaf.version>
-        <quantum.version>1.11</quantum.version>
+        <qaf.version>2.1.13</qaf.version>
+        <qafsupport.version>2.1.13</qafsupport.version>
+        <quantum.version>1.16</quantum.version>
         <org.json.version>20160810</org.json.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-             
+
     </properties>
 
     <build>
@@ -116,24 +115,43 @@
             <version>${cukes.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.qmetry</groupId>
             <artifactId>qaf</artifactId>
             <version>${qaf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.qmetry</groupId>
             <artifactId>qaf-support</artifactId>
-            <version>${qaf.version}</version>
+            <version>${qafsupport.version}</version>
         </dependency>
         <dependency>
             <groupId>com.quantum</groupId>
             <artifactId>quantum-support</artifactId>
             <version>${quantum.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.perfecto.reporting-sdk</groupId>
+            <artifactId>reportium-testng</artifactId>
+            <version>${reportium-sdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.7</version>
         </dependency>
     </dependencies>
 </project>
